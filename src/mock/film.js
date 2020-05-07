@@ -1,4 +1,5 @@
-import {getRandomIntegerNumber, getRandomArrayItem} from '../utils';
+import {getRandomIntegerNumber, getRandomArrayItem, getRandomDate} from '../utils';
+import {generateComments} from './comment';
 
 const filmNames = [
   `Jay and Silent Bob Strike Back`,
@@ -14,6 +15,33 @@ const genres = [
   `Romantic`,
   `Historical`,
   `Drama`
+];
+
+const country = [
+  `Russia`,
+  `United Kingdom`,
+  `USA`,
+  `Italy`,
+  `Poland`
+];
+
+const director = [
+  `Anthony Mann`,
+  `Ridley Scott`,
+  `Kevin Smith`,
+  `Frederico Fellini`,
+  `Ingmar Bergman`
+];
+
+const actors = [
+  `Bruce Willis`,
+  `Kevin Smith`,
+  `Jason Mewes`,
+  `Shannon Elizabeth`,
+  `Sam Rockwell`,
+  `Colin Ferrel`,
+  `Marisa Tomay`,
+  `Jerry Seinfeld`
 ];
 
 const posters = [
@@ -36,15 +64,40 @@ const generateDescription = (count) => {
 };
 
 const generateFilm = () => {
+  const tempIsWatched = Math.random() > 0.5;
+  const tempIsFavorite = tempIsWatched ? Math.random() > 0.5 : false;
+  const tempIsInWatchList = tempIsWatched ? false : Math.random() > 0.5;
+  let tempGenres = [];
+  for (let i = 0; i < getRandomIntegerNumber(1, 3); i++) {
+    tempGenres.push(getRandomArrayItem(genres));
+  }
+  let tempWriters = [];
+  for (let i = 0; i < getRandomIntegerNumber(3, 5); i++) {
+    tempWriters.push(getRandomArrayItem(actors));
+  }
+  let tempActors = [];
+  for (let i = 0; i < getRandomIntegerNumber(3, 5); i++) {
+    tempActors.push(getRandomArrayItem(actors));
+  }
+  const tempName = getRandomArrayItem(filmNames);
   return {
-    name: getRandomArrayItem(filmNames),
+    name: tempName,
+    nameOriginal: tempName,
     description: generateDescription(getRandomIntegerNumber(1, 5)),
-    releaseYear: getRandomIntegerNumber(1990, 2020),
-    genre: getRandomArrayItem(genres),
+    descriptionFull: generateDescription(getRandomIntegerNumber(3, 7)),
+    releaseDate: getRandomDate(80),
+    genres: tempGenres,
+    country: getRandomArrayItem(country),
+    director: getRandomArrayItem(director),
+    writers: tempWriters,
+    actors: tempActors,
     poster: getRandomArrayItem(posters),
     duration: `${getRandomIntegerNumber(1, 3)}h ${getRandomIntegerNumber(0, 60)}m`,
     rating: `${getRandomIntegerNumber(0, 10)}.${getRandomIntegerNumber(0, 9)}`,
-    comments: getRandomIntegerNumber(0, 100),
+    comments: generateComments(getRandomIntegerNumber(0, 15)),
+    isWatched: tempIsWatched,
+    isFavorite: tempIsFavorite,
+    isInWatchList: tempIsInWatchList
   };
 };
 
