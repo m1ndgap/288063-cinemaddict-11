@@ -1,3 +1,5 @@
+import {createElement} from "../utils";
+
 export const createSortMenu = () => {
   return (`
     <ul class="sort">
@@ -6,3 +8,25 @@ export const createSortMenu = () => {
     <li><a href="#" class="sort__button">Sort by rating</a></li>
     </ul>`);
 };
+
+export default class showMoreBtn {
+  constructor() {
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createShowMoreBtn();
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

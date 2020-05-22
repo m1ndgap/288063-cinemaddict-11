@@ -1,4 +1,6 @@
-export const createCard = (film) => {
+import {createElement} from "../utils.js";
+
+const createCard = (film) => {
   const {name, description, releaseDate, genres, poster, duration, rating, comments, isWatched, isFavorite, isInWatchList} = film;
   let btnActiveCls = `film-card__controls-item--active`;
   let viewIsWatched = isWatched ? btnActiveCls : ``;
@@ -37,3 +39,27 @@ const concatDescription = (description, descrLength) => {
   }
 };
 
+export default class Card {
+  constructor(film) {
+    this._film = film;
+
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createCard(this._film);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+
+}
