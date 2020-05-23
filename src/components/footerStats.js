@@ -5,7 +5,7 @@ const createFooterStats = (films) => {
   return `<p>${numberOfFilms} movies inside</p>`;
 };
 
-export default class footerStats {
+export default class FooterStats {
   constructor(films) {
     this._films = films;
 

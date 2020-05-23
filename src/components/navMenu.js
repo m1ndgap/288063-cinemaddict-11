@@ -9,8 +9,7 @@ const createFilterMarkup = (filter) => {
 
 const createNavigationMenu = (filters) => {
   const filtersMarkup = filters.map((filter) => createFilterMarkup(filter)).join(`\n`);
-  return `
-    <nav class="main-navigation">
+  return `<nav class="main-navigation">
       <div class="main-navigation__items">
       <a href="#all" class="main-navigation__item main-navigation__item--active">All movies</a>
         ${filtersMarkup}
@@ -19,7 +18,7 @@ const createNavigationMenu = (filters) => {
     </nav>`;
 };
 
-export default class navMenu {
+export default class NavigationMenu {
   constructor(filters) {
     this._filters = filters;
 

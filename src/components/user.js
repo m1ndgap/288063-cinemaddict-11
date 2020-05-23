@@ -7,7 +7,7 @@ const createUserBlock = () => {
   </section>`);
 };
 
-export default class userBlock {
+export default class UserBlock {
   constructor() {
     this._element = null;
   }

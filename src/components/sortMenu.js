@@ -1,8 +1,7 @@
 import {createElement} from "../utils";
 
 export const createSortMenu = () => {
-  return (`
-    <ul class="sort">
+  return (`<ul class="sort">
       <li><a href="#" class="sort__button sort__button--active">Sort by default</a></li>
     <li><a href="#" class="sort__button">Sort by date</a></li>
     <li><a href="#" class="sort__button">Sort by rating</a></li>
@@ -15,7 +14,7 @@ export default class showMoreBtn {
   }
 
   getTemplate() {
-    return createShowMoreBtn();
+    return createSortMenu();
   }
 
   getElement() {

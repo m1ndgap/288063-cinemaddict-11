@@ -1,12 +1,10 @@
 import {createElement} from "../utils";
 
 const createShowMoreBtn = () => {
-  return (`
-      <button class="films-list__show-more">Show more</button>
-`);
+  return (`<button class="films-list__show-more">Show more</button>`);
 };
 
-export default class showMoreBtn {
+export default class ShowMoreBtn {
   constructor() {
     this._element = null;
   }

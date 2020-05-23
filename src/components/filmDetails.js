@@ -148,7 +148,7 @@ const createFilmDetails = (film) => {
 };
 
 
-export default class filmDetails {
+export default class FilmDetails {
   constructor(film) {
     this._film = film;
 
