@@ -1,12 +1,13 @@
-export const createCard = (film) => {
+import {createElement} from "../utils.js";
+
+const createCard = (film) => {
   const {name, description, releaseDate, genres, poster, duration, rating, comments, isWatched, isFavorite, isInWatchList} = film;
   let btnActiveCls = `film-card__controls-item--active`;
   let viewIsWatched = isWatched ? btnActiveCls : ``;
   let viewIsFavorite = isFavorite ? btnActiveCls : ``;
   let viewIsInWatchList = isInWatchList ? btnActiveCls : ``;
   let releaseYear = releaseDate.getFullYear();
-  return (`
-      <article class="film-card">
+  return (`<article class="film-card">
           <h3 class="film-card__title">${name}</h3>
           <p class="film-card__rating">${rating}</p>
           <p class="film-card__info">
@@ -22,8 +23,7 @@ export const createCard = (film) => {
             <button class="film-card__controls-item button film-card__controls-item--mark-as-watched ${viewIsWatched}">Mark as watched</button>
             <button class="film-card__controls-item button film-card__controls-item--favorite ${viewIsFavorite}">Mark as favorite</button>
           </form>
-        </article>
-`);
+        </article>`);
 };
 
 const DESCRIPTION_LENGTH = 140;
@@ -37,3 +37,27 @@ const concatDescription = (description, descrLength) => {
   }
 };
 
+export default class Card {
+  constructor(film) {
+    this._film = film;
+
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createCard(this._film);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+
+}

@@ -1,5 +1,4 @@
-import {defineCommentDate, getMonthInText} from "../utils";
-
+import {defineCommentDate, getMonthInText, createElement} from "../utils";
 
 const createCommentsMarkup = (comment) => {
   let {name, text, date, emote} = comment;
@@ -23,7 +22,7 @@ const createGenreMarkup = (genre) => {
   return `<span class="film-details__genre">${genre}</span>`;
 };
 
-export const creteFilmDetails = (film) => {
+const createFilmDetails = (film) => {
   const {name, nameOriginal, descriptionFull, releaseDate, genres, country, director, actors, writers, poster, duration, rating, comments} = film;
   const commentsMarkup = comments.map((comment) => createCommentsMarkup(comment)).join(`\n`);
   const genresMarkup = genres.map((genre) => createGenreMarkup(genre)).join(`\n`);
@@ -147,3 +146,29 @@ export const creteFilmDetails = (film) => {
   </form>
 </section>`;
 };
+
+
+export default class FilmDetails {
+  constructor(film) {
+    this._film = film;
+
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createFilmDetails(this._film);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+
+}
