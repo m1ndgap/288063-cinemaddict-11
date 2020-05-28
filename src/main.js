@@ -44,6 +44,18 @@ const renderFilm = (filmsListElement, film) => {
       filmDetails.getElement().remove();
       filmDetails.removeElement();
     });
+
+    const onEscKeyDown = (evt) => {
+      const isEscKey = evt.key === `Escape` || evt.key === `Esc`;
+
+      if (isEscKey) {
+        filmDetails.getElement().remove();
+        filmDetails.removeElement();
+        document.removeEventListener(`keydown`, onEscKeyDown);
+      }
+    };
+
+    document.addEventListener(`keydown`, onEscKeyDown)
   };
 
   let commentsLinkEl = filmComponent.getElement().querySelector(`.film-card__comments`);
