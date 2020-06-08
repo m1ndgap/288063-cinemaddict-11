@@ -44,8 +44,6 @@ const renderFilm = (filmsListElement, film) => {
       filmDetails.getElement().remove();
       filmDetails.removeElement();
     });
-<<<<<<< Updated upstream
-=======
 
     const onEscKeyDown = (evt) => {
       const isEscKey = evt.key === `Escape` || evt.key === `Esc`;
@@ -58,7 +56,6 @@ const renderFilm = (filmsListElement, film) => {
     };
 
     document.addEventListener(`keydown`, onEscKeyDown);
->>>>>>> Stashed changes
   };
 
   let commentsLinkEl = filmComponent.getElement().querySelector(`.film-card__comments`);
